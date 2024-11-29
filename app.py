@@ -1,16 +1,12 @@
 import random
 from flask import Flask, render_template, request, redirect, url_for, session
-import os
 
 app = Flask(__name__)
-
-# Generate a random secret key
-app.secret_key = os.urandom(24)  # Securely generate a random secret key
+app.secret_key = 'your_secret_key'  # Replace this with a strong secret key
 
 # List of words for the hangman game
 words = ['python', 'flask', 'hangman', 'developer', 'flaskapp', 'coding']
 
-# Route to show the game page
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if 'word' not in session:
@@ -44,15 +40,12 @@ def index():
 
     return render_template('index.html', word=word, guessed_letters=guessed_letters, wrong_guesses=wrong_guesses)
 
-
-# Route to reset the game
 @app.route('/reset', methods=['GET'])
 def reset():
     session.pop('word', None)
     session.pop('guessed_letters', None)
     session.pop('wrong_guesses', None)
     return redirect(url_for('index'))
-
 
 if __name__ == '__main__':
     app.run(debug=True)
