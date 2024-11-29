@@ -1,49 +1,68 @@
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    text-align: center;
     margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
 }
 
-.container {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+/* Title */
+h1 {
+    color: #333;
 }
 
-input[type="text"] {
-    padding: 10px;
-    width: 50px;
-    margin-bottom: 10px;
-    text-align: center;
+/* Word display (the blanks and correct guesses) */
+.word {
+    font-size: 36px;
+    font-weight: bold;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+}
+
+/* Wrong guesses counter */
+.wrong-guesses {
+    color: red;
     font-size: 18px;
 }
 
-button {
-    padding: 10px 20px;
+/* Game Over and Game Won messages */
+.game-over, .game-won {
+    font-size: 24px;
+    color: green;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Input and button styling */
+form input {
+    font-size: 18px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+form button {
+    font-size: 18px;
+    padding: 6px 12px;
     background-color: #4CAF50;
     color: white;
     border: none;
-    border-radius: 4px;
+    cursor: pointer;
 }
 
-button:hover {
+form button:hover {
     background-color: #45a049;
 }
 
-a {
+/* Reset button styling */
+.reset a {
     text-decoration: none;
-    color: #007BFF;
-    margin-top: 20px;
-    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
 }
 
-a:hover {
-    text-decoration: underline;
+.reset a:hover {
+    background-color: #0056b3;
 }
