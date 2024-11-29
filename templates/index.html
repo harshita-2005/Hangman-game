@@ -4,41 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman Game</title>
+    <!-- Link to the CSS file in the static folder -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Hangman Game</h1>
-        <p>Guess the word!</p>
+    <h1>Welcome to Hangman!</h1>
+    <p>Guess the word:</p>
 
-        {% if not game_over and not game_won %}
-            <p>Wrong guesses: {{ wrong_guesses }}/6</p>
-            <p>Guessed letters: {{ guessed_letters }}</p>
+    <!-- Word display -->
+    <div class="word">
+        {% for letter in word %}
+            {% if letter in guessed_letters %}
+                {{ letter }}
+            {% else %}
+                _ 
+            {% endif %}
+        {% endfor %}
+    </div>
 
-            <form method="POST">
-                <input type="text" name="letter" maxlength="1" required>
-                <button type="submit">Guess</button>
-            </form>
+    <!-- Wrong guesses display -->
+    <p>Wrong guesses: <span class="wrong-guesses">{{ wrong_guesses }}</span></p>
 
-            <h2>Word:</h2>
-            <p>
-                {% for letter in word %}
-                    {% if letter in guessed_letters %}
-                        {{ letter }}
-                    {% else %}
-                        _ 
-                    {% endif %}
-                {% endfor %}
-            </p>
-        {% elif game_won %}
-            <h2>You Won!</h2>
-            <p>The word was: {{ word }}</p>
-        {% else %}
-            <h2>Game Over!</h2>
-            <p>The word was: {{ word }}</p>
-        {% endif %}
+    <!-- Form to submit guesses -->
+    <form action="/" method="POST">
+        <input type="text" name="letter" maxlength="1" required>
+        <button type="submit">Guess</button>
+    </form>
 
-        <a href="{{ url_for('reset') }}">Start a New Game</a>
+    {% if game_over %}
+        <p class="game-over">Game Over! The word was: {{ word }}.</p>
+    {% elif game_won %}
+        <p class="game-won">You won! The word was: {{ word }}.</p>
+    {% endif %}
+
+    <!-- Reset game button -->
+    <div class="reset">
+        <a href="{{ url_for('reset') }}">Play Again</a>
     </div>
 </body>
 </html>
